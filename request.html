@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<!--
+  ATLAS VISIBILITY — request form (single file).
+  ► BEFORE GOING LIVE: get a free access key at https://web3forms.com (enter info@atlasvis.com),
+    then paste it below where it says PASTE_YOUR_WEB3FORMS_ACCESS_KEY_HERE.
+    Submissions are emailed to whichever address you registered — no server needed, free & unlimited.
+  Edit text via the data-en / data-no attributes to keep the EN/NO toggle in sync.
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atlas Visibility — Request your free AI Visibility report</title>
+<style>
+  :root{--ink:#0e1b2a;--muted:#5a6b7b;--bg:#f7fafc;--card:#ffffff;--accent:#1f7a8c;--accent-dark:#155e6b;--line:#e3edf2;--good:#2a9d5c;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.55}
+  .wrap{max-width:560px;margin:0 auto;padding:0 22px}
+  header{padding:18px 0;display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .logo{font-weight:800;letter-spacing:-.3px;font-size:20px}
+  .logo span{color:var(--accent)}
+  .logo a{color:inherit;text-decoration:none}
+  .lang{display:inline-flex;border:1px solid var(--line);border-radius:99px;overflow:hidden;background:#fff}
+  .lang button{border:none;background:transparent;padding:7px 13px;font-size:13px;font-weight:600;cursor:pointer;color:var(--muted)}
+  .lang button.active{background:var(--accent);color:#fff}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px;margin:20px 0 50px}
+  h1{font-size:26px;letter-spacing:-.5px;margin-bottom:6px}
+  .sub{font-size:15px;color:var(--muted);margin-bottom:22px}
+  label{display:block;font-size:13px;font-weight:600;margin:14px 0 5px}
+  input,select,textarea{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:9px;font-size:15px;font-family:inherit;background:#fff}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent)}
+  textarea{min-height:80px;resize:vertical}
+  .btn{width:100%;background:var(--accent);color:#fff;border:none;padding:14px;border-radius:10px;font-size:16px;font-weight:600;cursor:pointer;margin-top:22px}
+  .btn:hover{background:var(--accent-dark)}
+  .btn:disabled{opacity:.6;cursor:not-allowed}
+  .fine{font-size:12px;color:var(--muted);margin-top:14px;text-align:center}
+  /* confirmation */
+  #done{display:none;text-align:center;padding:20px 6px}
+  #done .tick{width:64px;height:64px;border-radius:50%;background:#e7f6ee;color:var(--good);display:flex;align-items:center;justify-content:center;font-size:34px;margin:0 auto 16px}
+  #done h2{font-size:22px;margin-bottom:10px}
+  #done p{color:var(--muted);font-size:15px}
+  #done a{color:var(--accent);font-weight:600;text-decoration:none;display:inline-block;margin-top:18px}
+  .err{display:none;background:#fdecea;color:#b3261e;font-size:13px;padding:10px 12px;border-radius:8px;margin-top:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="logo"><a href="index.html">Atlas<span> Visibility</span></a></div>
+    <div class="lang" role="group" aria-label="Language">
+      <button data-lang="en" class="active" onclick="setLang('en')">EN</button>
+      <button data-lang="no" onclick="setLang('no')">NO</button>
+    </div>
+  </header>
+
+  <div class="card">
+    <!-- FORM -->
+    <form id="form">
+      <h1 data-en="Request your free AI Visibility report" data-no="Be om din gratis AI-synlighetsrapport">Request your free AI Visibility report</h1>
+      <p class="sub" data-en="Fill in your clinic's details. We'll run a real check across ChatGPT, Claude, Gemini and Perplexity and email your report — free, no obligation." data-no="Fyll inn klinikkens detaljer. Vi kjører en ekte sjekk på tvers av ChatGPT, Claude, Gemini og Perplexity og sender rapporten på e-post — gratis og uforpliktende.">Fill in your clinic's details. We'll run a real check across ChatGPT, Claude, Gemini and Perplexity and email your report — free, no obligation.</p>
+
+      <!-- Web3Forms config (see comment at top of file) -->
+      <input type="hidden" name="access_key" value="PASTE_YOUR_WEB3FORMS_ACCESS_KEY_HERE">
+      <input type="hidden" name="subject" value="New Atlas Visibility report request">
+      <input type="hidden" name="from_name" value="Atlas Visibility website">
+      <input type="hidden" name="plan" id="plan" value="">
+      <input type="checkbox" name="botcheck" style="display:none">
+
+      <label data-en="Clinic / company name *" data-no="Klinikk / firmanavn *">Clinic / company name *</label>
+      <input type="text" name="clinic_name" required>
+
+      <label data-en="Your name *" data-no="Ditt navn *">Your name *</label>
+      <input type="text" name="contact_name" required>
+
+      <label data-en="Email *" data-no="E-post *">Email *</label>
+      <input type="email" name="email" required>
+
+      <label data-en="City *" data-no="By *">City *</label>
+      <input type="text" name="city" placeholder="Bergen / Nicosia / …" required>
+
+      <label data-en="Website" data-no="Nettside">Website</label>
+      <input type="text" name="website" placeholder="https://">
+
+      <label data-en="Clinic type" data-no="Klinikktype">Clinic type</label>
+      <select name="clinic_type">
+        <option data-en="Dental" data-no="Tannklinikk">Dental</option>
+        <option data-en="Veterinary" data-no="Veterinær">Veterinary</option>
+        <option data-en="Cosmetic / aesthetic" data-no="Kosmetisk / estetisk">Cosmetic / aesthetic</option>
+        <option data-en="Medical / other" data-no="Medisinsk / annet">Medical / other</option>
+      </select>
+
+      <label data-en="Anything else? (optional)" data-no="Noe annet? (valgfritt)">Anything else? (optional)</label>
+      <textarea name="message"></textarea>
+
+      <button type="submit" class="btn" id="submitBtn" data-en="Send my request" data-no="Send forespørselen min">Send my request</button>
+      <div class="err" id="err" data-en="Something went wrong. Please email info@atlasvis.com instead." data-no="Noe gikk galt. Send heller en e-post til info@atlasvis.com.">Something went wrong. Please email info@atlasvis.com instead.</div>
+      <p class="fine" data-en="We only use your details to prepare and send your report. No spam." data-no="Vi bruker kun detaljene dine til å lage og sende rapporten. Ingen spam.">We only use your details to prepare and send your report. No spam.</p>
+    </form>
+
+    <!-- CONFIRMATION (shown after submit) -->
+    <div id="done">
+      <div class="tick">✓</div>
+      <h2 data-en="Request received!" data-no="Forespørsel mottatt!">Request received!</h2>
+      <p data-en="Thank you — we've got your clinic's details. You'll receive your free AI Visibility report by email as soon as possible, usually within 48 hours." data-no="Takk — vi har mottatt klinikkens detaljer. Du får din gratis AI-synlighetsrapport på e-post så snart som mulig, vanligvis innen 48 timer.">Thank you — we've got your clinic's details. You'll receive your free AI Visibility report by email as soon as possible, usually within 48 hours.</p>
+      <a href="index.html" data-en="← Back to home" data-no="← Tilbake til forsiden">← Back to home</a>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // language toggle
+  function setLang(lang){
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-'+lang+']').forEach(function(el){
+      if(el.tagName === 'OPTION'){ el.textContent = el.getAttribute('data-'+lang); }
+      else { el.innerHTML = el.getAttribute('data-'+lang); }
+    });
+    document.querySelectorAll('.lang button').forEach(function(b){ b.classList.toggle('active', b.getAttribute('data-lang') === lang); });
+  }
+  setLang('en');
+
+  // prefill plan from URL (?plan=Pro)
+  var params = new URLSearchParams(location.search);
+  if(params.get('plan')){ document.getElementById('plan').value = params.get('plan'); }
+
+  // submit -> Web3Forms -> confirmation
+  var form = document.getElementById('form');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var btn = document.getElementById('submitBtn');
+    btn.disabled = true;
+    document.getElementById('err').style.display = 'none';
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Accept': 'application/json' },
+      body: new FormData(form)
+    }).then(function(r){ return r.json(); })
+      .then(function(data){
+        if(data.success){
+          form.style.display = 'none';
+          document.getElementById('done').style.display = 'block';
+          window.scrollTo(0,0);
+        } else { throw new Error('fail'); }
+      })
+      .catch(function(){
+        document.getElementById('err').style.display = 'block';
+        btn.disabled = false;
+      });
+  });
+</script>
+</body>
+</html>

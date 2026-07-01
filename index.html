@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<!--
+  ATLAS VISIBILITY — homepage (single file, no dependencies).
+  EDIT TIP: change the visible text AND its matching data-en / data-no attribute so the
+  EN/NO toggle stays in sync. IMPORTANT: edit this file in a PLAIN-TEXT / code editor
+  (VS Code, or GitHub's web editor) — NOT TextEdit/Pages, which re-saves it as a styled
+  document and breaks the design. Colours are in :root. CTA buttons link to request.html.
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atlas Visibility — Get your clinic recommended by AI</title>
+<meta name="description" content="Atlas Visibility shows clinics how they appear when patients ask AI like ChatGPT for a recommendation — and how to get recommended more.">
+<style>
+  :root{--ink:#0e1b2a;--muted:#5a6b7b;--bg:#f7fafc;--card:#ffffff;--accent:#1f7a8c;--accent-dark:#155e6b;--line:#e3edf2;--good:#2a9d5c;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.55}
+  .wrap{max-width:880px;margin:0 auto;padding:0 22px}
+  header{padding:18px 0;display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .logo{font-weight:800;letter-spacing:-.3px;font-size:20px}
+  .logo span{color:var(--accent)}
+  .right{display:flex;align-items:center;gap:12px}
+  .btn{background:var(--accent);color:#fff;border:none;padding:13px 22px;border-radius:10px;font-size:15px;font-weight:600;cursor:pointer;text-decoration:none;display:inline-block}
+  .btn:hover{background:var(--accent-dark)}
+  .lang{display:inline-flex;border:1px solid var(--line);border-radius:99px;overflow:hidden;background:#fff}
+  .lang button{border:none;background:transparent;padding:7px 13px;font-size:13px;font-weight:600;cursor:pointer;color:var(--muted)}
+  .lang button.active{background:var(--accent);color:#fff}
+  .hero{text-align:center;padding:54px 0 36px}
+  .pill{display:inline-block;background:#e7f3f5;color:var(--accent-dark);font-size:13px;font-weight:600;padding:6px 14px;border-radius:99px;margin-bottom:18px}
+  h1{font-size:40px;line-height:1.12;letter-spacing:-1px;margin-bottom:16px}
+  h1 em{color:var(--accent);font-style:normal}
+  .sub{font-size:19px;color:var(--muted);max-width:640px;margin:0 auto 26px}
+  .hero .btn{font-size:16px;padding:15px 30px}
+  .note{font-size:13px;color:var(--muted);margin-top:12px}
+  .stat-row{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin:42px 0}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;min-width:200px;flex:1}
+  .stat b{display:block;font-size:30px;color:var(--accent)}
+  .stat span{font-size:13px;color:var(--muted)}
+  section{padding:34px 0;border-top:1px solid var(--line)}
+  h2{font-size:26px;letter-spacing:-.5px;margin-bottom:18px}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .step .n{width:30px;height:30px;border-radius:8px;background:var(--accent);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;margin-bottom:12px}
+  .step h3{font-size:16px;margin-bottom:6px}
+  .step p{font-size:14px;color:var(--muted)}
+  .proof{background:#0e1b2a;color:#fff;border-radius:18px;padding:30px;display:grid;grid-template-columns:1.1fr 1fr;gap:26px;align-items:center}
+  .proof h2{color:#fff}
+  .proof p{color:#b9c6d2;font-size:15px}
+  .scorecard{background:#13243a;border:1px solid #21364f;border-radius:14px;padding:20px}
+  .scorecard .big{font-size:46px;font-weight:800;color:#ff7a70;line-height:1}
+  .scorecard .lbl{font-size:13px;color:#8fa2b5;margin-bottom:14px}
+  .bar{height:8px;background:#21364f;border-radius:99px;overflow:hidden;margin:6px 0 4px}
+  .bar i{display:block;height:100%;background:#ff7a70;width:8%}
+  .rowmini{display:flex;justify-content:space-between;font-size:13px;color:#cdd8e2;padding:4px 0;border-bottom:1px solid #21364f}
+  .price{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .plan{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px;text-align:center}
+  .plan.featured{border:2px solid var(--accent);position:relative}
+  .plan.featured::after{content:attr(data-tag);position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--accent);color:#fff;font-size:11px;font-weight:700;padding:3px 12px;border-radius:99px}
+  .plan h3{font-size:17px;margin-bottom:6px}
+  .plan .amt{font-size:34px;font-weight:800}
+  .plan .amt small{font-size:14px;color:var(--muted);font-weight:500}
+  .plan ul{list-style:none;text-align:left;margin:16px 0;font-size:14px}
+  .plan li{padding:6px 0 6px 24px;position:relative}
+  .plan li::before{content:"✓";position:absolute;left:0;color:var(--good);font-weight:800}
+  .faq h3{font-size:16px;margin-top:18px}
+  .faq p{font-size:14px;color:var(--muted);margin-top:4px}
+  footer{padding:40px 0;text-align:center;color:var(--muted);font-size:13px}
+  @media(max-width:680px){.steps,.price{grid-template-columns:1fr}.proof{grid-template-columns:1fr}h1{font-size:30px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="logo">Atlas<span> Visibility</span></div>
+    <div class="right">
+      <div class="lang" role="group" aria-label="Language">
+        <button data-lang="en" class="active" onclick="setLang('en')">EN</button>
+        <button data-lang="no" onclick="setLang('no')">NO</button>
+      </div>
+      <a href="request.html" class="btn" data-en="Get a free AI check" data-no="Få en gratis AI-sjekk">Get a free AI check</a>
+    </div>
+  </header>
+
+  <div class="hero">
+    <div class="pill" data-en="For private dental, vet &amp; medical clinics" data-no="For private tann-, veterinær- og legeklinikker">For private dental, vet &amp; medical clinics</div>
+    <h1 data-en='When patients ask AI <em>"best clinic near me,"</em> do you show up?' data-no='Når pasienter spør AI om <em>"beste klinikk i nærheten,"</em> dukker du opp?'>When patients ask AI <em>"best clinic near me,"</em> do you show up?</h1>
+    <p class="sub" data-en="In Norway, 1 in 2 people now use AI like ChatGPT — and they ask it who to trust before they ever Google you. Atlas Visibility shows exactly where you stand in those answers, and how to get recommended more." data-no="I Norge bruker nå 1 av 2 personer AI som ChatGPT — og de spør om hvem de kan stole på før de googler deg. Atlas Visibility viser nøyaktig hvor du står i disse svarene, og hvordan du blir anbefalt oftere.">In Norway, 1 in 2 people now use AI like ChatGPT — and they ask it who to trust before they ever Google you. Atlas Visibility shows exactly where you stand in those answers, and how to get recommended more.</p>
+    <a href="request.html" class="btn" data-en="Get your free AI Visibility check →" data-no="Få din gratis AI-synlighetssjekk →">Get your free AI Visibility check →</a>
+    <div class="note" data-en="No charge. We run a real check on your clinic and send you the report." data-no="Ingen kostnad. Vi kjører en ekte sjekk av klinikken din og sender deg rapporten.">No charge. We run a real check on your clinic and send you the report.</div>
+  </div>
+
+  <div class="stat-row">
+    <div class="stat"><b>56%</b><span data-en="of Norwegians use generative AI — highest in Europe" data-no="av nordmenn bruker generativ AI — høyest i Europa">of Norwegians use generative AI — highest in Europe</span></div>
+    <div class="stat"><b>37%</b><span data-en="of consumers now start searches with an AI tool" data-no="av forbrukere starter nå søk med et AI-verktøy">of consumers now start searches with an AI tool</span></div>
+    <div class="stat"><b>~25%</b><span data-en="projected drop in traditional search traffic by 2026" data-no="forventet fall i tradisjonell søketrafikk innen 2026">projected drop in traditional search traffic by 2026</span></div>
+  </div>
+
+  <section>
+    <div class="proof">
+      <div>
+        <h2 data-en="This is already happening" data-no="Dette skjer allerede">This is already happening</h2>
+        <p data-en="We asked ChatGPT, Claude, Gemini and Perplexity to recommend a dentist in Bergen — 12 real conversations. One local clinic was named in 0 of them. Its competitors took every spot in a market where most clinics have no idea where they stand. We show you, then fix it." data-no="Vi ba ChatGPT, Claude, Gemini og Perplexity anbefale en tannlege i Bergen — 12 ekte samtaler. Én lokal klinikk ble nevnt i 0 av dem. Konkurrentene tok hver eneste plass i et marked der de fleste klinikker ikke aner hvor de står. Vi viser deg det, og fikser det.">We asked ChatGPT, Claude, Gemini and Perplexity to recommend a dentist in Bergen — 12 real conversations. One local clinic was named in 0 of them. Its competitors took every spot in a market where most clinics have no idea where they stand. We show you, then fix it.</p>
+      </div>
+      <div class="scorecard">
+        <div class="lbl" data-en="Example AI Visibility Score" data-no="Eksempel: AI-synlighetsscore">Example AI Visibility Score</div>
+        <div class="big">0<span style="font-size:18px;color:#8fa2b5">/100</span></div>
+        <div class="bar"><i></i></div>
+        <div class="rowmini"><span>ChatGPT</span><span>0%</span></div>
+        <div class="rowmini"><span>Claude</span><span>0%</span></div>
+        <div class="rowmini"><span>Gemini</span><span>0%</span></div>
+        <div class="rowmini"><span>Perplexity</span><span>0%</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 data-en="How it works" data-no="Slik fungerer det">How it works</h2>
+    <div class="steps">
+      <div class="step"><div class="n">1</div>
+        <h3 data-en="We test the questions your patients ask" data-no="Vi tester spørsmålene pasientene dine stiller">We test the questions your patients ask</h3>
+        <p data-en="We ask AI agents — ChatGPT, Claude, Gemini, Perplexity — in your local language to recommend a clinic in your city. Dozens of real buyer questions." data-no="Vi spør AI-agenter — ChatGPT, Claude, Gemini, Perplexity — på ditt språk om å anbefale en klinikk i din by. Dusinvis av ekte kundespørsmål.">We ask AI agents — ChatGPT, Claude, Gemini, Perplexity — in your local language to recommend a clinic in your city. Dozens of real buyer questions.</p></div>
+      <div class="step"><div class="n">2</div>
+        <h3 data-en="You get an AI Visibility Score" data-no="Du får en AI-synlighetsscore">You get an AI Visibility Score</h3>
+        <p data-en="A clear 0–100 score, who AI recommends instead of you, and why — in plain language, no jargon." data-no="En tydelig score fra 0–100, hvem AI anbefaler i stedet for deg, og hvorfor — i klartekst, uten sjargong.">A clear 0–100 score, who AI recommends instead of you, and why — in plain language, no jargon.</p></div>
+      <div class="step"><div class="n">3</div>
+        <h3 data-en="We hand you the fixes" data-no="Vi gir deg løsningene">We hand you the fixes</h3>
+        <p data-en="A prioritized checklist plus copy-paste templates. We re-measure every month so you can watch your score climb." data-no="En prioritert sjekkliste pluss ferdige maler. Vi måler på nytt hver måned så du kan se scoren stige.">A prioritized checklist plus copy-paste templates. We re-measure every month so you can watch your score climb.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2 data-en="Simple membership pricing" data-no="Enkel medlemspris">Simple membership pricing</h2>
+    <div class="price">
+      <div class="plan">
+        <h3>Starter</h3>
+        <div class="amt">€49<small>/mo</small></div>
+        <ul>
+          <li data-en="1 location" data-no="1 lokasjon">1 location</li>
+          <li data-en="Monthly AI Visibility report" data-no="Månedlig AI-synlighetsrapport">Monthly AI Visibility report</li>
+          <li data-en="Action checklist" data-no="Tiltakssjekkliste">Action checklist</li>
+          <li data-en="Template library" data-no="Malbibliotek">Template library</li>
+        </ul>
+        <a href="request.html?plan=Starter" class="btn" data-en="Start" data-no="Start">Start</a>
+      </div>
+      <div class="plan featured" data-tag="Most popular">
+        <h3>Pro</h3>
+        <div class="amt">€99<small>/mo</small></div>
+        <ul>
+          <li data-en="Everything in Starter" data-no="Alt i Starter">Everything in Starter</li>
+          <li data-en="Competitor tracking" data-no="Konkurrentsporing">Competitor tracking</li>
+          <li data-en="Weekly checks" data-no="Ukentlige sjekker">Weekly checks</li>
+          <li data-en="Priority fixes + new templates monthly" data-no="Prioriterte løsninger + nye maler hver måned">Priority fixes + new templates monthly</li>
+        </ul>
+        <a href="request.html?plan=Pro" class="btn" data-en="Start" data-no="Start">Start</a>
+      </div>
+      <div class="plan">
+        <h3 data-en="Done-for-you" data-no="Gjort-for-deg">Done-for-you</h3>
+        <div class="amt">€299<small>/mo</small></div>
+        <ul>
+          <li data-en="Everything in Pro" data-no="Alt i Pro">Everything in Pro</li>
+          <li data-en="We implement the fixes" data-no="Vi gjennomfører løsningene">We implement the fixes</li>
+          <li data-en="Quarterly strategy call" data-no="Kvartalsvis strategisamtale">Quarterly strategy call</li>
+        </ul>
+        <a href="request.html?plan=Done-for-you" class="btn" data-en="Enquire" data-no="Forespør">Enquire</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="cta" class="faq">
+    <h2 data-en="Get your free AI Visibility check" data-no="Få din gratis AI-synlighetssjekk">Get your free AI Visibility check</h2>
+    <p class="sub" style="margin:0 0 20px" data-en="Tell us your clinic and city. We'll run a real check and send your report within 48 hours — free, no obligation." data-no="Fortell oss klinikken og byen din. Vi kjører en ekte sjekk og sender rapporten innen 48 timer — gratis og uforpliktende.">Tell us your clinic and city. We'll run a real check and send your report within 48 hours — free, no obligation.</p>
+    <a href="request.html" class="btn" data-en="Request my free report" data-no="Be om min gratis rapport">Request my free report</a>
+
+    <h3 data-en="Will this work for a clinic in Cyprus?" data-no="Fungerer dette for en klinikk på Kypros?">Will this work for a clinic in Cyprus?</h3>
+    <p data-en="Yes. We test in English and Greek, ideal for clinics serving both local and medical-tourism patients in Nicosia, Larnaca and Limassol." data-no="Ja. Vi tester på engelsk og gresk, ideelt for klinikker som betjener både lokale pasienter og medisinsk turisme i Nicosia, Larnaca og Limassol.">Yes. We test in English and Greek, ideal for clinics serving both local and medical-tourism patients in Nicosia, Larnaca and Limassol.</p>
+    <h3 data-en="Is this allowed under medical advertising rules?" data-no="Er dette tillatt etter reglene for markedsføring av helsetjenester?">Is this allowed under medical advertising rules?</h3>
+    <p data-en="Yes. We improve how accurately you appear in search and AI answers — we don't make medical claims on your behalf. Private dental advertising is deregulated in Norway, and all work follows the Marketing Control Act and GDPR." data-no="Ja. Vi forbedrer hvor presist du fremstår i søk og AI-svar — vi fremmer ingen medisinske påstander på dine vegne. Markedsføring av privat tannhelse er deregulert i Norge, og alt arbeid følger markedsføringsloven og GDPR.">Yes. We improve how accurately you appear in search and AI answers — we don't make medical claims on your behalf. Private dental advertising is deregulated in Norway, and all work follows the Marketing Control Act and GDPR.</p>
+    <h3 data-en="Do I need to be technical?" data-no="Må jeg være teknisk?">Do I need to be technical?</h3>
+    <p data-en="No. Every fix is explained in plain language with copy-paste templates, and on Done-for-you we handle it for you." data-no="Nei. Hver løsning forklares i klartekst med ferdige maler, og på Gjort-for-deg ordner vi det for deg.">No. Every fix is explained in plain language with copy-paste templates, and on Done-for-you we handle it for you.</p>
+  </section>
+
+  <footer data-en="Atlas Visibility · Bergen 🇳🇴 &amp; Cyprus 🇨🇾 · info@atlasvis.com" data-no="Atlas Visibility · Bergen 🇳🇴 og Kypros 🇨🇾 · info@atlasvis.com">Atlas Visibility · Bergen 🇳🇴 &amp; Cyprus 🇨🇾 · info@atlasvis.com</footer>
+
+</div>
+
+<script>
+  function setLang(lang){
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-'+lang+']').forEach(function(el){ el.innerHTML = el.getAttribute('data-'+lang); });
+    document.querySelectorAll('.lang button').forEach(function(b){ b.classList.toggle('active', b.getAttribute('data-lang') === lang); });
+  }
+  setLang('en');
+</script>
+</body>
+</html>
